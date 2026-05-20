@@ -1,5 +1,10 @@
 document.getElementById('registerBtn').addEventListener('click', register);
 document.getElementById('loginBtn').addEventListener('click', goToLogin);
+async function getCsrfToken() {
+  const res = await fetch('/api/csrf-token');
+  const data = await res.json();
+  return data.csrfToken;
+}
 
 function showPopup(message, success = true) {
   const popup = document.createElement('div');
@@ -13,9 +18,12 @@ function showPopup(message, success = true) {
 }
 
 async function register() {
+  const csrfToken = await getCsrfToken();
   const res = await fetch('/api/register', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: {'Content-Type': 'application/json',
+              'CSRF-Token': csrfToken
+    },
     body: JSON.stringify({
       email: document.getElementById('email').value,
       password: document.getElementById('password').value

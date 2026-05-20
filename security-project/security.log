@@ -1,0 +1,96 @@
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: User not found"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: User not found"}
+{"level":"info","message":"Register attempt"}
+{"level":"info","message":"User registered successfully"}
+{"level":"info","message":"Login attempt"}
+{"level":"info","message":"Login successful"}
+{"level":"info","message":"Dashboard accessed"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: User not found"}
+{"level":"info","message":"Register attempt"}
+{"level":"warn","message":"Register failed: Invalid email format"}
+{"level":"info","message":"Register attempt"}
+{"level":"warn","message":"Register failed: Weak password"}
+{"level":"info","message":"Register attempt"}
+{"level":"info","message":"User registered successfully"}
+{"level":"info","message":"Login attempt"}
+{"level":"info","message":"Login successful"}
+{"level":"info","message":"Dashboard accessed"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Dashboard accessed"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: User not found"}
+{"level":"info","message":"Register attempt"}
+{"level":"warn","message":"Register failed: Invalid email format"}
+{"level":"info","message":"Register attempt"}
+{"level":"warn","message":"Register failed: Invalid email format"}
+{"level":"info","message":"Register attempt"}
+{"level":"warn","message":"Register failed: Weak password"}
+{"level":"info","message":"Register attempt"}
+{"level":"info","message":"User registered successfully"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: User not found"}
+{"level":"info","message":"Register attempt"}
+{"level":"info","message":"User registered successfully"}
+{"level":"info","message":"Login attempt"}
+{"level":"info","message":"Login successful"}
+{"level":"info","message":"Dashboard accessed"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: User not found"}
+{"level":"info","message":"Register attempt"}
+{"level":"info","message":"User registered successfully"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: Wrong password"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: Wrong password"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: User not found"}
+{"level":"info","message":"Register attempt"}
+{"level":"info","message":"User registered successfully"}
+{"level":"info","message":"Login attempt"}
+{"level":"info","message":"Login successful"}
+{"level":"info","message":"Login attempt"}
+{"level":"info","message":"Login successful"}
+{"level":"info","message":"Dashboard accessed"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: User not found"}
+{"level":"info","message":"Register attempt"}
+{"level":"info","message":"User registered successfully"}
+{"level":"info","message":"Login attempt"}
+{"level":"info","message":"Login successful"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: User not found"}
+{"level":"info","message":"Register attempt"}
+{"level":"info","message":"User registered successfully"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Register attempt"}
+{"level":"info","message":"User registered successfully"}
+{"level":"info","message":"Login attempt"}
+{"level":"info","message":"Login successful"}
+{"level":"info","message":"Dashboard accessed"}
+{"level":"info","message":"Dashboard accessed"}
+{"level":"info","message":"Dashboard accessed"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: User not found"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: User not found"}
+{"level":"info","message":"Login attempt"}
+{"level":"warn","message":"Login failed: User not found"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Register attempt"}
+{"level":"info","message":"User registered successfully"}
+{"level":"info","message":"Login attempt"}
+{"level":"info","message":"Login successful"}
+{"level":"info","message":"Register attempt"}
+{"level":"info","message":"User registered successfully"}

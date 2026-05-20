@@ -74,7 +74,7 @@ async function loadDashboard() {
   // Fetch total users
   const userRes = await fetch("/api/users/count", {
     headers: {
-      Authorization: token,
+       "x-api-key": "mysecretkey123"
     },
   });
 
