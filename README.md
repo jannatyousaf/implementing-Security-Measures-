@@ -22,6 +22,8 @@ This project is a simple and secure web application built using **Node.js**. It 
 - ✅ Rate Limiting (Requests per minute)
 - ✅ CSRF Protection with csurf
 - ✅ Cookie Parser for secure cookie handling
+- ✅ Web Application Firewall (WAF) - Detects & blocks SQL injection, XSS, path traversal attacks
+- ✅ Docker Deployment - Containerized application for consistent environments
 
 ---
 
@@ -40,18 +42,19 @@ This project is a simple and secure web application built using **Node.js**. It 
 | **csurf** | CSRF Token Protection |
 | **cookie-parser** | Secure Cookie Parsing |
 | **CORS** | Cross-Origin Resource Sharing |
+| **Docker** | Container Deployment |
 | **HTML/CSS/JavaScript** | Frontend UI |
 
 ---
 
 ## 🔒 Security Implementations
-- Token expiration set to 1 hour
 
 ### Access Control
 - Protected routes prevent unauthorized access
 - Role-based access control for dashboard
 - API Key authentication for sensitive endpoints
 - Token verification middleware on protected routes
+- Token expiration set to 1 hour
 
 ### Headers & CSP
 - Content Security Policy enforced via Helmet
@@ -82,12 +85,16 @@ This project is a simple and secure web application built using **Node.js**. It 
 - Logs written to both console and `security.log` file
 - Failed login attempts tracked and logged
 - Suspicious activity alerts on 3+ failed attempts
-- IP-based attempt tracking XSS attacks
+- IP-based attempt tracking for anomaly detection
 
-### Input Validation
-- Request validation on all endpoints
-- Sanitization of user inputs
-- Protection against injection attacks
+### Web Application Firewall (WAF)
+- Custom WAF middleware detects and blocks common attacks:
+  - **SQL Injection patterns:** `' OR 1=1`, `UNION SELECT`, `DROP TABLE`
+  - **Cross-Site Scripting (XSS):** `<script>` tags and similar XSS payloads
+  - **Path Traversal attacks:** `../` sequences
+- Returns 403 Forbidden status for suspicious requests
+- Scans both request body and URL parameters
+- Real-time logging of blocked threats
 
 ---
 
@@ -153,13 +160,58 @@ This project is a simple and secure web application built using **Node.js**. It 
 
 3. **Start the server:**
    ```bash
-   node server.js
+   npm start
    ```
 
 4. **Access the application:**
    - Open browser at `http://localhost:5000`
    - Register a new account
    - Login and access the dashboard
+
+---
+
+## 🐳 Docker Deployment
+
+### Prerequisites
+- Docker installed on your system
+
+### Running with Docker
+
+1. **Build the Docker image:**
+   ```bash
+   docker build -t security-project .
+   ```
+
+2. **Run the container:**
+   ```bash
+   docker run -p 5000:5000 security-project
+   ```
+
+3. **Access the application:**
+   - Open browser at `http://localhost:5000`
+
+### Docker Configuration
+- **Base Image:** Node.js 20-slim (optimized for security and size)
+- **Working Directory:** `/app`
+- **Port Exposed:** 5000
+- **Startup Command:** `npm start`
+
+### Dockerfile Contents
+```dockerfile
+FROM node:20-slim
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 5000
+CMD ["npm", "start"]
+```
+
+### Benefits
+- ✅ Consistent environment across development, testing, and production
+- ✅ Easy deployment and scaling
+- ✅ Isolated application environment
+- ✅ Lightweight container with security-focused base image
 
 ---
 
@@ -185,6 +237,11 @@ This project is a simple and secure web application built using **Node.js**. It 
 - **Usage:** Pass via `x-api-key` header
 - **Protected Endpoints:** `/api/users/count`
 
+### WAF Configuration
+- Pattern-based threat detection
+- Automatically blocks requests containing suspicious patterns
+- Customizable patterns in `middleware/wafMiddleware.js`
+
 ---
 
 ## 📊 Logging
@@ -199,28 +256,7 @@ All security events are logged using Winston:
 - ✓ Dashboard access
 - ✓ Failed login attempts per IP
 - ✓ Suspicious activity alerts
-
----
-   # Main application server with Helmet, CORS, rate limiting
-├── logger.js                    # Winston logger configuration
-├── package.json                 # Dependencies and scripts
-├── middleware/
-│   ├── authMiddleware.js        # JWT authentication middleware
-│   ├── apiKey.js                # API Key validation middleware
-│   └── loginMonitor.js          # Login attempt monitoring & brute force protection
-├── routes/
-│   └── auth.js                  # Authentication endpoints (register, login, dashboard, users/count)P directives appropriately |
-| Fixing frontend navigation and API integration | Corrected API endpoints and CORS configuration |
-
----
-
-## 📚 Learning Outcomes
-
-- ✨ Understanding of complete authentication flow in web applications
-- ✨ Practical implementation of industry-standard security practices
-- ✨ Real-world debugging techniques and error resolution
-- ✨ Writing secure, production-ready frontend and backend code
-- ✨ Importance of defense-in-depth security strategies
+- ✓ WAF-blocked requests
 
 ---
 
@@ -228,12 +264,18 @@ All security events are logged using Winston:
 
 ```
 security-project/
-├── server.js                 # Main application server
-├── package.json              # Dependencies and scripts
+├── server.js                    # Main application server with Express, Helmet, CORS, rate limiting
+├── logger.js                    # Winston logger configuration
+├── Dockerfile                   # Docker container configuration
+├── package.json                 # Dependencies and scripts
 ├── middleware/
-│   └── authMiddleware.js     # JWT authentication middleware
+│   ├── authMiddleware.js        # JWT authentication middleware
+│   ├── apiKey.js                # API Key validation middleware
+│   ├── loginMonitor.js          # Login attempt monitoring & brute force protection
+│   ├── roleMiddleware.js        # Role-based access control
+│   └── wafMiddleware.js         # Web Application Firewall middleware
 ├── routes/
-│   └── auth.js              # Authentication endpoints
+│   └── auth.js                  # Authentication endpoints (register, login, dashboard, users/count)
 └── public/
     ├── dashboard.html
     ├── login.html
@@ -246,20 +288,33 @@ security-project/
 
 ---
 
-## 🚀 Getting Started
+## 📚 Learning Outcomes
 
-### Prerequisites
-- Node.js (v14+)
-- npm
+- ✨ Understanding of complete authentication flow in web applications
+- ✨ Practical implementation of industry-standard security practices
+- ✨ Real-world debugging techniques and error resolution
+- ✨ Writing secure, production-ready frontend and backend code
+- ✨ Importance of defense-in-depth security strategies
+- ✨ Web Application Firewall concepts and threat detection
+- ✨ Container-based deployment with Docker
 
-### Installation
+---
 
+## 🔧 Troubleshooting
+
+### Port 5000 Already in Use
 ```bash
-# Install dependencies
-npm install
+# On Windows PowerShell
+Get-Process -Id (Get-NetTCPConnection -LocalPort 5000).OwningProcess | Stop-Process -Force
 
-# Complete setup
-npm start
+# On Linux/Mac
+sudo lsof -ti:5000 | xargs kill -9
+```
+
+### Docker Container Won't Start
+```bash
+# Check Docker daemon is running and rebuild
+docker build --no-cache -t security-project .
 ```
 
 ---

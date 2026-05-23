@@ -6,6 +6,9 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 const cookieParser = require('cookie-parser');
 const csurf = require('csurf');
+const checkRole = require('./middleware/roleMiddleware');
+const verifyToken = require('./middleware/authMiddleware');
+const wafMiddleware = require('./middleware/wafMiddleware');
 
 // Rate limiting
 const limiter = rateLimit({
@@ -16,6 +19,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use(express.json());
+app.use(wafMiddleware);
 app.use(cookieParser());
 app.use(
   helmet({
@@ -48,6 +52,9 @@ const authRoutes = require('./routes/auth');
 app.use('/api', authRoutes);
 app.get('/', (req, res) => {
   res.send('Server is running 🚀');
+});
+app.get('/admin', verifyToken, checkRole('admin'), (req, res) => {
+  res.send('Welcome Admin 🔐');
 });
 app.get('/api/csrf-token', (req, res) => {
   res.json({ csrfToken: req.csrfToken() });

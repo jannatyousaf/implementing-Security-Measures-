@@ -94,3 +94,13 @@
 {"level":"info","message":"Login successful"}
 {"level":"info","message":"Register attempt"}
 {"level":"info","message":"User registered successfully"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Register attempt"}
+{"level":"info","message":"User registered successfully"}
+{"level":"info","message":"Login attempt"}
+{"level":"info","message":"Login successful"}
+{"level":"info","message":"Dashboard accessed"}
+{"level":"info","message":"Application started"}
+{"level":"info","message":"Application started"}
