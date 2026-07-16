@@ -79,10 +79,11 @@ router.post("/login", loginMonitor, async (req, res) => {
   }
 
   const token = jwt.sign(
-  {
-    email: user.email,
-    role: user.role
-  }, "secretkey", { expiresIn: "1h" });
+  { email: user.email, role: user.role },
+  process.env.JWT_SECRET,
+  { expiresIn: "1h" }
+);
+
   logger.info("Login successful");
   res.send({ token });
 });
