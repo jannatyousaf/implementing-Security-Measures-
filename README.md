@@ -132,7 +132,7 @@ This project is a simple and secure web application built using **Node.js**. It 
 **Login Success:**
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  "token": "XXX"
 }
 ```
 
@@ -141,7 +141,7 @@ This project is a simple and secure web application built using **Node.js**. It 
 - Token expires after 1 hour
 
 **API Key Access:**
-- Include `x-api-key: mysecretkey123` header
+- Include `x-api-key: XX` header
 - Example: `GET /api/users/count` with API key header
 
 ---
